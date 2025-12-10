@@ -1,0 +1,86 @@
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* FIX — Remove the dark overlay from shadcn/ui drawers */
+
+/* ----------------------------------------
+   FINAL FIX — Remove all drawer overlays
+   ---------------------------------------- */
+
+@layer utilities {
+  .sheet-no-overlay {
+    background-color: blue;
+    backdrop-filter: initial;
+  }
+}
+[data-state="open"] ~ div,
+.radix-overlay,
+[data-radix-overlay],
+div[class*="Overlay"],
+div[class*="overlay"] {
+  background-color: transparent !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+}
+
+/* === Slow background color shift === */
+@keyframes gradientslow {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(30deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+.animate-gradientslow {
+  animation: gradientslow 15s ease-in-out infinite;
+}
+
+/* === Blob animations === */
+@keyframes blob1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(80px, -60px) scale(1.15); }
+}
+.animate-blob1 { animation: blob1 18s ease-in-out infinite; }
+
+@keyframes blob2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-100px, 80px) scale(1.1); }
+}
+.animate-blob2 { animation: blob2 22s ease-in-out infinite; }
+
+@keyframes blob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 80px) scale(1.2); }
+}
+.animate-blob3 { animation: blob3 25s ease-in-out infinite; }
+
+/* === Floating particle animation === */
+@keyframes particle {
+  0% {
+    transform: translateY(0px) scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-80px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scale(0.8);
+    opacity: 0.6;
+  }
+}
+.animate-particle {
+  animation: particle linear infinite;
+}
+.dashboard-typing-effect {
+  animation: fadeInUp 1.4s ease;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

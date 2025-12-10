@@ -1,0 +1,121 @@
+/* BackgroundDecor styles (works with Tailwind v4) */
+.bg-decor-root {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* under content that has z-index > 0 */
+  pointer-events: none;
+}
+
+/* Place container where you want — we typically place it in Dashboard wrapper */
+.bg-decor-box {
+  position: absolute;
+  right: 48px; /* adjust to your preference */
+  top: 140px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  filter: blur(0.2px);
+  transform-origin: center;
+}
+
+/* outer glow */
+.bg-decor-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* rotating gradient */
+.bg-decor-rotater {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(6,182,212,0.12), rgba(99,102,241,0.12), rgba(168,85,247,0.12));
+  filter: blur(10px);
+  animation: bg-rotate 6s linear infinite;
+  z-index: 0;
+}
+
+/* inner dark card */
+.bg-decor-inner {
+  position: absolute;
+  inset: 6px;
+  background: rgba(17,24,39,0.9); /* dark inner */
+  border-radius: 10px;
+  z-index: 1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* bars inside */
+.bg-decor-bars { display:flex; gap:6px; align-items:center; justify-content:center; }
+.bg-decor-bars .bar {
+  width: 6px;
+  height: 48%;
+  border-radius: 4px;
+  transform-origin: bottom;
+  background: linear-gradient(to top,#06b6d4,#6366f1);
+  animation: bar-bounce 1s ease-in-out infinite;
+}
+.bg-decor-bars .b2 { animation-delay: 0.08s; background: linear-gradient(to top,#0ea5a4,#8b5cf6); }
+.bg-decor-bars .b3 { animation-delay: 0.16s; background: linear-gradient(to top,#3b82f6,#a78bfa); }
+.bg-decor-bars .b4 { animation-delay: 0.24s; background: linear-gradient(to top,#7c3aed,#6366f1); }
+
+.bg-decor-topgrad {
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to top, rgba(99,102,241,0.08), transparent 45%);
+  z-index:2;
+  mix-blend-mode: screen;
+}
+
+/* small ping dots */
+.dot {
+  position:absolute;
+  width:8px;height:8px;border-radius:999px;background:#06b6d4;opacity:0.9; animation: ping 1.8s ease-in-out infinite;
+}
+.dot.d1 { top:-6px; left:-6px; animation-delay: 0s; background:#06b6d4; }
+.dot.d2 { top:-6px; right:-6px; animation-delay: 0.15s; background:#a78bfa; }
+.dot.d3 { bottom:-6px; left:-6px; animation-delay: 0.3s; background:#06b6d4; }
+.dot.d4 { bottom:-6px; right:-6px; animation-delay: 0.45s; background:#7c3aed; }
+
+/* Space button variant - simplified version */
+.space-btn-decor { position:absolute; left:48px; top:140px; z-index:0; }
+.space-btn-core {
+  display:flex; align-items:center; justify-content:center;
+  width:13rem; height:3rem; border-radius:999px;
+  border: double 4px transparent;
+  background-image: linear-gradient(#212121,#212121), linear-gradient(137deg,#ffdb3b,#fe53bb,#8f51ea,#0044ff);
+  background-origin:border-box; background-clip:content-box,border-box;
+  position:relative; overflow:hidden; transition:transform .25s; transform-origin:center;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.12);
+}
+.space-btn-core strong { color:white; z-index:2; font-weight:700; font-size:12px; letter-spacing:4px; text-shadow:0 0 6px rgba(255,255,255,0.18); }
+.space-stars { position:absolute; inset:0; z-index:0; opacity:0.9; }
+.space-stars-inner { position:absolute; top:-60px; left:-180px; width:200rem; height:200rem; background-image: radial-gradient(#ffffff 1px, transparent 1%); background-size: 50px 50px; animation: star-slide 60s linear infinite; opacity:0.25; }
+.space-glow { position:absolute; display:flex; width:12rem; z-index:0; }
+.space-circle { width:100%; height:30px; filter: blur(24px); animation: pulse 4s infinite; }
+.space-circle:nth-child(1){ background: rgba(254,83,186,0.7); }
+.space-circle:nth-child(2){ background: rgba(142,81,234,0.7); }
+
+/* Animations */
+@keyframes bg-rotate { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+@keyframes bar-bounce {
+  0% { transform: scaleY(0.7); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.7); }
+}
+@keyframes ping { 0%{ transform: scale(0.8); opacity: 1;} 100%{ transform: scale(1.6); opacity: 0.0; } }
+@keyframes star-slide { from { transform: translateY(0); } to { transform: translateY(-135rem); } }
+@keyframes pulse { 0%{ transform: scale(.75);} 70%{ transform: scale(1);} 100%{ transform: scale(.75);} }
+
+/* position bias: ensure main content overlays the decor (increase z-index on main blocks) */
+header, main, .card, .bg-white { position: relative; z-index: 10; }

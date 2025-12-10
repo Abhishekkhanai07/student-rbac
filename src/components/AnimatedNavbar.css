@@ -1,0 +1,66 @@
+.navbar-wrapper {
+  position: relative;
+  width: 420px;
+  height: 60px;
+}
+
+.nav-container {
+  position: absolute;
+  inset: 0;
+  background: rgba(190, 255, 255, 0.4);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5em;
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+}
+
+.nav-item {
+  padding: 0.5em 1.2em;
+  cursor: pointer;
+  color: #222;
+  transition: 0.2s ease;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: black;
+}
+
+.nav-item.active {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.nav-outline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.nav-rect {
+  stroke-dashoffset: 5;
+  stroke-dasharray: 0 0 10 40 10 40;
+  transition: 0.5s;
+  stroke: #ffffff;
+}
+
+.nav-container:hover .nav-outline .nav-rect {
+  transition: 999999s;
+  stroke-dashoffset: 1;
+  stroke-dasharray: 0;
+}
+
+.nav-item:nth-child(1):hover ~ svg .nav-rect {
+  stroke-dasharray: 0 2 8 73.3 8 10.7;
+}
+
+.nav-item:nth-child(2):hover ~ svg .nav-rect {
+  stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+}
+
+.nav-item:nth-child(3):hover ~ svg .nav-rect {
+  stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
+}
