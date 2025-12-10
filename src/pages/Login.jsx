@@ -57,6 +57,7 @@ export default function Login() {
           <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
             className="
               bg-white/60 border-white/40 
               focus:ring-2 focus:ring-purple-400 focus:border-purple-400
@@ -70,6 +71,7 @@ export default function Login() {
           <Input
             type="password"
             value={password}
+            placeholder="Enter your password"
             onChange={(e) => setPassword(e.target.value)}
             className="
               bg-white/60 border-white/40 
